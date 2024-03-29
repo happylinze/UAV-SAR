@@ -244,4 +244,6 @@ python ensemble.py
 ## Acknowledgements
 This repo is based on [Skeleton-MixFormer](https://github.com/ElricXin/Skeleton-MixFormer), [Info-GCN](https://github.com/stnoah1/infogcn) and [STTFormer](https://github.com/heleiqiu/STTFormer). The data processing is borrowed from [SGN](https://github.com/microsoft/SGN) and [HCN](https://github.com/huguyuehuhu/HCN-pytorch).
 
-Thanks to the original authors for their work!  
+Thanks to the original authors for their work! 
+
+If you have any questions, please concat  [youwei](youwei_zhou@stu.jiangnan.edu.cn) and [linze](linze.li@stu.jiangnan.edu.cn).
