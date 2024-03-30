@@ -65,7 +65,7 @@ def get_parser():
     parser.add_argument(
         '--phase', default='train', help='must be train or test')
     parser.add_argument(
-        '--save-score',
+        '--save_score',
         type=str2bool,
         default=False,
         help='if ture, the classification score will be stored')
