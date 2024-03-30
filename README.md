@@ -174,7 +174,7 @@ python main.py --config ./config/uav_csv1/motion.yaml --work-dir <the save path 
 ### Testing
 If you want to test any trained model saved in `<work_dir>`, run the following command: 
 ```shell
-python main.py --config <work_dir>/config.yaml --work-dir <work_dir> --phase test --save-score True --weights <work_dir>/xxx.pt
+python main.py --config <work_dir>/config.yaml --work-dir <work_dir> --phase test --save_score True --weights <work_dir>/xxx.pt
 ```
 It will get a file `epoch1_test_score.pkl` which save the prediction score, put them into the following directory structure:
 ```
