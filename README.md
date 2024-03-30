@@ -25,7 +25,7 @@ Put downloaded data into the following directory structure:
 - data/
     - uav/
         - Skeleton/
-            -all_sqe
+            - all_sqe
             ... # txt data of UAV-Human
 ```
 ### Data Processing
@@ -201,7 +201,6 @@ It will get a file `epoch1_test_score.pkl` which save the prediction score, put 
                 - epoch1_test_score.pkl
             - motion_6/
                 - epoch1_test_score.pkl
-            ...
         - CSv2/
             ...
     - mixformer/
@@ -220,7 +219,6 @@ It will get a file `epoch1_test_score.pkl` which save the prediction score, put 
                 - epoch1_test_score.pkl
             - motion_6/
                 - epoch1_test_score.pkl
-            ...
         - CSv2/
             ...
     - sttformer/
@@ -233,7 +231,6 @@ It will get a file `epoch1_test_score.pkl` which save the prediction score, put 
                 - epoch1_test_score.pkl
             - m/
                 - epoch1_test_score.pkl
-            ...
         - CSv2/
             ...
 ```
