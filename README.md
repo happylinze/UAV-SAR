@@ -1,4 +1,4 @@
-# Readme
+# README
 
 ## Abstract
 We have ensembles three models, including infoGCN+FR_Head, Skeleton-MixFormer, and STTFormer.
@@ -56,7 +56,7 @@ python gen_angle_data.py
 ```
 ## Training & Testing
 ### Quick Inference
-You could use `ensemble.py` to validate the accuracy on v1 and v2. The command as:
+All the prediction results have been saved in the `./ensemble_results`. You could use `ensemble.py` to validate the accuracy on v1 and v2. The command as:
 ```shell
 python ensemble.py
 ```
@@ -91,7 +91,7 @@ python main.py --config ./config/uav_csv1/motion_2.yaml --work-dir <the save pat
 # By motion k=6
 python main.py --config ./config/uav_csv1/motion_6.yaml --work-dir <the save path of results>
 ```
-3. The default sample frames for model is 64, we also trained the 32 frames and the 128 frames.The commands as:
+3. The default sample frames for model is 64, we also trained the 32 frames and the 128 frames. The commands as:
 ```shell
 cd ./infogcn(FR_Head)
 
