@@ -6,7 +6,7 @@ import numpy as np
 import pickle
 import logging
 
-root_path = '/'
+root_path = './'
 raw_data_file = osp.join(root_path, 'raw_data', 'raw_skes_data.pkl')
 save_path = osp.join(root_path, 'denoised_data')
 

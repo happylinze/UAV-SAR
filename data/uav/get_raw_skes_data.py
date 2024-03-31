@@ -141,7 +141,7 @@ def get_raw_skes_data():
         pickle.dump(frames_drop_skes, fw, pickle.HIGHEST_PROTOCOL)
 
 if __name__ == '__main__':
-    save_path = '/'
+    save_path = './'
     skes_path = './Skeleton'
     stat_path = osp.join(save_path, 'statistics')
     if not osp.exists('./raw_data'):

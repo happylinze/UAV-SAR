@@ -8,7 +8,7 @@ import logging
 import h5py
 from sklearn.model_selection import train_test_split
 
-root_path = '/'
+root_path = './'
 stat_path = osp.join(root_path, 'statistics')
 setup_file = osp.join(stat_path, 'setup.txt')
 camera_file = osp.join(stat_path, 'camera.txt')
@@ -21,7 +21,7 @@ denoised_path = osp.join(root_path, 'denoised_data')
 raw_skes_joints_pkl = osp.join(denoised_path, 'raw_denoised_joints.pkl')
 frames_file = osp.join(denoised_path, 'frames_cnt.txt')
 
-save_path = '/'
+save_path = './'
 
 
 if not osp.exists(save_path):
