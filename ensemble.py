@@ -118,7 +118,7 @@ class EvalModel():
 
 if __name__ == '__main__':
     npz_data_v1 = np.load('./data/uav/MMVRAC_CSv1.npz')
-    npz_data_v2 = np.load('data/uav/MMVRAC_CSv2.npz')
+    npz_data_v2 = np.load('./data/uav/MMVRAC_CSv2.npz')
     label_v1 = np.where(npz_data_v1['y_test'] > 0)[1]
     label_v2 = np.where(npz_data_v2['y_test'] > 0)[1]
     evalModel_v1 = EvalModel('ensemble_results', 'CSv1')
