@@ -1,0 +1,8 @@
+__pycache__
+
+data/uav/Skeleton/
+data/uav/denoised_data
+data/uav/raw_data/
+
+data/uav/*.npz
+data/uav/*.npy
