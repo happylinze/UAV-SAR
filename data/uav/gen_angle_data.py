@@ -26,8 +26,8 @@ def gen_angle_data_one_num_worker(path):
     train_x = train_x.reshape((N_train, T_train, 2, 17, 3)).transpose(0, 4, 1, 3, 2)
     test_x = test_x.reshape((N_test, T_test, 2, 17, 3)).transpose(0, 4, 1, 3, 2)
 
-    Parallel(n_jobs=8)(delayed(lambda i: new_train_x.__setitem__(i,getThridOrderRep(train_x[i])))(i) for i in tqdm(range(N_train)))
-    Parallel(n_jobs=8)(delayed(lambda i: new_test_x.__setitem__(i,getThridOrderRep(test_x[i])))(i) for i in tqdm(range(N_test)))
+    Parallel(n_jobs=6)(delayed(lambda i: new_train_x.__setitem__(i,getThridOrderRep(train_x[i])))(i) for i in tqdm(range(N_train)))
+    Parallel(n_jobs=6)(delayed(lambda i: new_test_x.__setitem__(i,getThridOrderRep(test_x[i])))(i) for i in tqdm(range(N_test)))
 
     new_train_x = new_train_x.transpose(0, 2, 4, 3, 1).reshape(N_train, T_train, -1)
     new_test_x = new_test_x.transpose(0, 2, 4, 3, 1).reshape(N_test, T_test, -1)
