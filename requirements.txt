@@ -19,3 +19,4 @@ torchaudio==0.13.0
 torchpack==0.0.3
 torchvision==0.14.0
 tqdm==4.65.0
+numba

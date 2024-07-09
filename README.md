@@ -11,7 +11,7 @@ All prediction results are saved in the folder `ensemble_results`, just like `ep
 * python == 3.8
 * pytorch == 1.1.3
 * NVIDIA apex
-* PyYAML, tqdm, tensorboardX, wandb
+* PyYAML, tqdm, tensorboardX, wandb, numba
 
 Run `pip install -e torchlight`.
 
