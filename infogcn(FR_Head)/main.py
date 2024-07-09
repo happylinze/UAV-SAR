@@ -12,9 +12,9 @@ import traceback
 
 from collections import OrderedDict
 
-import apex
 import torch
 import torch.optim as optim
+import intel_extension_for_pytorch as ipex
 import numpy as np
 import yaml
 
@@ -31,7 +31,7 @@ from utils import BalancedSampler as BS
 # resource.setrlimit(resource.RLIMIT_NOFILE, (2048, rlimit[1]))
 
 def init_seed(seed):
-    torch.cuda.manual_seed_all(seed)
+    # torch.manual_seed_all(seed)
     torch.manual_seed(seed)
     np.random.seed(seed)
     random.seed(seed)
@@ -68,18 +68,8 @@ class Processor():
         self.best_acc = 0
         self.best_acc_epoch = 0
 
-        model = self.model.cuda()
-
-        if self.arg.half:
-            self.model, self.optimizer = apex.amp.initialize(
-                model,
-                self.optimizer,
-                opt_level=f'O{self.arg.amp_opt_level}'
-            )
-            if self.arg.amp_opt_level != 1:
-                self.print_log('[WARN] nn.DataParallel is not yet supported by amp_opt_level != "O1"')
-
-        # self.model = torch.nn.DataParallel(model, device_ids=(0,1,2))
+        model = self.model.to('xpu')
+        self.model, self.optimizer = ipex.optimize(model, optimizer=self.optimizer) # dtype=torch.bfloat16
 
     def load_data(self):
         Feeder = import_class(self.arg.feeder)
@@ -142,9 +132,9 @@ class Processor():
             cl_mode=self.arg.cl_mode
         )
         if self.arg.focal_loss:
-            self.loss = MultiClassFocalLossWithAlpha(num_class=self.arg.num_class).cuda()
+            self.loss = MultiClassFocalLossWithAlpha(num_class=self.arg.num_class).to('xpu')
         else:
-            self.loss = LabelSmoothingCrossEntropy().cuda()
+            self.loss = LabelSmoothingCrossEntropy().to('xpu')
 
         if self.arg.weights:
             self.global_step = int(self.arg.weights[:-3].split('-')[-1])
@@ -155,7 +145,7 @@ class Processor():
             else:
                 weights = torch.load(self.arg.weights)
 
-            weights = OrderedDict([[k.split('module.')[-1], v.cuda()] for k, v in weights.items()])
+            weights = OrderedDict([[k.split('module.')[-1], v.to('xpu')] for k, v in weights.items()])
 
             keys = list(weights.keys())
             for w in self.arg.ignore_weights:
@@ -259,8 +249,8 @@ class Processor():
         for data, y, index in tqdm(self.data_loader['train'], dynamic_ncols=True):
             self.global_step += 1
             with torch.no_grad():
-                data = data.float().cuda()
-                y = y.long().cuda()
+                data = data.float().to('xpu')
+                y = y.long().to('xpu')
             timer['dataloader'] += self.split_time()
 
             # forward
@@ -285,11 +275,8 @@ class Processor():
                 full_loss = loss
             # backward
             self.optimizer.zero_grad()
-            if self.arg.half:
-                with apex.amp.scale_loss(full_loss, self.optimizer) as scaled_loss:
-                    scaled_loss.backward()
-            else:
-                full_loss.backward()
+            # with torch.xpu.amp.autocast(enabled=True, dtype=torch.bfloat16):
+            full_loss.backward()
 
             self.optimizer.step()
 
@@ -338,8 +325,8 @@ class Processor():
             for data, y, index in tqdm(self.data_loader[ln], dynamic_ncols=True):
                 label_list.append(y)
                 with torch.no_grad():
-                    data = data.float().cuda()
-                    y = y.long().cuda()
+                    data = data.float().to('xpu')
+                    y = y.long().to('xpu')
                     y_hat, z = self.model(data)
                     if save_z:
                         z_list.append(z.data.cpu().numpy())
@@ -467,7 +454,6 @@ def main():
         parser.set_defaults(**default_arg)
 
     arg = parser.parse_args()
-    os.environ['CUDA_VISIBLE_DEVICES'] = str(arg.device)
     init_seed(arg.seed)
     # execute process
     processor = Processor(arg)
