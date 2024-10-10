@@ -1,11 +1,7 @@
-# README
+# MMVRAC 2024 - Track 10: Skeleton-based Action Recognition
+The official PyTorch implementation of the workshop paper ["A Hybrid Multi-Perspective Complementary Model for Human Skeleton-Based Action Recognition"](https://ieeexplore.ieee.org/abstract/document/10645356) (ICMEW 2024). **We achieved 2nd place in ICME2024 - Multi-Modal Video Reasoning and Analyzing Competition (MMVRAC)**.
 
-## Abstract
-We have ensembles three models, including infoGCN+FR_Head, Skeleton-MixFormer, and STTFormer.
-
-**In the end, we achieved the accuracy of 48.51% on v1, and the accuracy of 76.13% on v2.**
-
-All prediction results are saved in the folder `ensemble_results`, just like `epoch1_test_score.pkl`, and you could use our prediction results for validation, or train these models by yourself according to `readme.md`.
+In simple terms, by ensembling three models infoGCN+FR_Head, Skeleton-MixFormer, and STTFormer, **we achieved 48.51% accuracy on v1 and 76.13% on v2.**  All prediction results are saved in the folder `ensemble_results`, just like `epoch1_test_score.pkl`, and you could use our prediction results for validation, or train these models by yourself according to `readme.md`.
 
 ## Dependencies
 * python == 3.8
@@ -238,9 +234,20 @@ Then run the command as:
 ```shell
 python ensemble.py
 ```
+## Citation
+```
+@inproceedings{li2024hybrid,
+  title={A Hybrid Multi-Perspective Complementary Model for Human Skeleton-Based Action Recognition},
+  author={Li, Linze and Zhou, Youwei and Hu, Jiannan and Wu, Cong and Xu, Tianyang and Wu, Xiao-Jun},
+  booktitle={2024 IEEE International Conference on Multimedia and Expo Workshops (ICMEW)},
+  pages={1--6},
+  year={2024},
+  organization={IEEE}
+}
+```
+
 ## Acknowledgements
-This repo is based on [Skeleton-MixFormer](https://github.com/ElricXin/Skeleton-MixFormer), [Info-GCN](https://github.com/stnoah1/infogcn) and [STTFormer](https://github.com/heleiqiu/STTFormer). The data processing is borrowed from [SGN](https://github.com/microsoft/SGN) and [HCN](https://github.com/huguyuehuhu/HCN-pytorch).
+This repo is based on [Skeleton-MixFormer](https://github.com/ElricXin/Skeleton-MixFormer), [Info-GCN](https://github.com/stnoah1/infogcn), [STTFormer](https://github.com/heleiqiu/STTFormer), and [SGN](https://github.com/microsoft/SGN), [HCN](https://github.com/huguyuehuhu/HCN-pytorch).
+Thanks to these excellent works! 
 
-Thanks to the original authors for their work! 
-
-If you have any questions, please concat  [youwei](youwei_zhou@stu.jiangnan.edu.cn) and [linze](linze.li@stu.jiangnan.edu.cn).
+If you have any questions, please concat linze.li@stu.jiangnan.edu.cn or youwei_zhou@stu.jiangnan.edu.cn.
