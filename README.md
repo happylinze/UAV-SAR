@@ -1,5 +1,5 @@
 # MMVRAC 2024 - Track 10: Skeleton-based Action Recognition
-The official PyTorch implementation of the workshop paper ["A Hybrid Multi-Perspective Complementary Model for Human Skeleton-Based Action Recognition"](https://ieeexplore.ieee.org/abstract/document/10645356) (ICMEW 2024). **We achieved 2nd place in ICME2024 - Multi-Modal Video Reasoning and Analyzing Competition (MMVRAC)**.
+The official PyTorch implementation of the workshop paper ["A Hybrid Multi-Perspective Complementary Model for Human Skeleton-Based Action Recognition"](https://ieeexplore.ieee.org/abstract/document/10645356) (ICMEW 2024). **We achieved 2nd place in ICME2024 - Multi-Modal Video Reasoning and Analyzing Competition [(MMVRAC)](https://sutdcv.github.io/MMVRAC/)**.
 
 In simple terms, by ensembling three models infoGCN+FR_Head, Skeleton-MixFormer, and STTFormer, **we achieved 48.51% accuracy on v1 and 76.13% on v2.**  All prediction results are saved in the folder `ensemble_results`, just like `epoch1_test_score.pkl`, and you could use our prediction results for validation, or train these models by yourself according to `readme.md`.
 
